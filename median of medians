@@ -1,0 +1,6 @@
+def median_of_medians(arr, k):
+    arr.sort()
+    return arr[k-1]
+
+arr = [12,3,5,7,19]
+print(median_of_medians(arr,2))

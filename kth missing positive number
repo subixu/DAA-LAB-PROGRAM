@@ -1,0 +1,13 @@
+def find_kth_missing(arr, k):
+    i = 1
+    count = 0
+    idx = 0
+    
+    while True:
+        if idx < len(arr) and arr[idx] == i:
+            idx += 1
+        else:
+            count += 1
+            if count == k:
+                return i
+        i += 1

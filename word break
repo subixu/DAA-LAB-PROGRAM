@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+
+char *dict[]={"i","like","sam","sung","samsung"};
+
+int check(char *s){
+    if(strlen(s)==0) return 1;
+
+    for(int i=0;i<5;i++){
+        int len=strlen(dict[i]);
+        if(strncmp(s,dict[i],len)==0){
+            if(check(s+len)) return 1;
+        }
+    }
+    return 0;
+}
+
+int main(){
+    char s[]="ilike";
+    printf("%s", check(s)?"Yes":"No");
+}

@@ -1,0 +1,14 @@
+import math
+
+def closest_pair(points):
+    min_dist = float('inf')
+    pair = None
+    
+    for i in range(len(points)):
+        for j in range(i+1, len(points)):
+            dist = math.dist(points[i], points[j])
+            if dist < min_dist:
+                min_dist = dist
+                pair = (points[i], points[j])
+    
+    return pair, min_dist

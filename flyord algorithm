@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+    int n = 4;
+    int dist[4][4] = {
+        {0,3,999,7},
+        {8,0,2,999},
+        {5,999,0,1},
+        {2,999,999,0}
+    };
+
+    for(int k=0;k<n;k++)
+        for(int i=0;i<n;i++)
+            for(int j=0;j<n;j++)
+                if(dist[i][k]+dist[k][j] < dist[i][j])
+                    dist[i][j] = dist[i][k]+dist[k][j];
+
+    printf("Shortest path 1->3 = %d", dist[0][2]);
+}

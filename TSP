@@ -1,0 +1,16 @@
+import itertools, math
+
+def tsp(cities):
+    start = cities[0]
+    min_dist = float('inf')
+    best = []
+    
+    for perm in itertools.permutations(cities[1:]):
+        path = [start] + list(perm) + [start]
+        dist = sum(math.dist(path[i], path[i+1]) for i in range(len(path)-1))
+        
+        if dist < min_dist:
+            min_dist = dist
+            best = path
+    
+    return min_dist, best

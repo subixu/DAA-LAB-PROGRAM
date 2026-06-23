@@ -1,0 +1,13 @@
+import itertools
+
+def assignment_problem(cost):
+    min_cost = float('inf')
+    best = None
+    
+    for perm in itertools.permutations(range(len(cost))):
+        total = sum(cost[i][perm[i]] for i in range(len(cost)))
+        if total < min_cost:
+            min_cost = total
+            best = perm
+    
+    return best, min_cost

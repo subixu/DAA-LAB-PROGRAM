@@ -1,0 +1,20 @@
+def knapsack(weights, values, capacity):
+    n = len(weights)
+    max_val = 0
+    best = []
+    
+    for i in range(1<<n):
+        w = v = 0
+        subset = []
+        
+        for j in range(n):
+            if i & (1<<j):
+                w += weights[j]
+                v += values[j]
+                subset.append(j)
+        
+        if w <= capacity and v > max_val:
+            max_val = v
+            best = subset
+    
+    return best, max_val

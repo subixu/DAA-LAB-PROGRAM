@@ -1,0 +1,21 @@
+def minimumTimeRequired(jobs, k):
+    workers = [0]*k
+    res = [float('inf')]
+    
+    def backtrack(i):
+        if i == len(jobs):
+            res[0] = min(res[0], max(workers))
+            return
+        
+        for j in range(k):
+            workers[j] += jobs[i]
+            if workers[j] < res[0]:
+                backtrack(i+1)
+            workers[j] -= jobs[i]
+            if workers[j] == 0:
+                break
+                
+    backtrack(0)
+    return res[0]
+
+print(minimumTimeRequired([1,2,4,7,8],2))

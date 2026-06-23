@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <limits.h>
+
+int n = 5;
+
+int tsp(int g[5][5], int v[], int pos, int count, int cost) {
+    if(count == n && g[pos][0])
+        return cost + g[pos][0];
+
+    int ans = INT_MAX;
+
+    for(int i=0;i<n;i++) {
+        if(!v[i] && g[pos][i]) {
+            v[i]=1;
+            int temp = tsp(g,v,i,count+1,cost+g[pos][i]);
+            if(temp<ans) ans=temp;
+            v[i]=0;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    int g[5][5]={
+        {0,10,15,20,25},
+        {10,0,35,25,30},
+        {15,35,0,30,20},
+        {20,25,30,0,15},
+        {25,30,20,15,0}
+    };
+
+    int v[5]={0};
+    v[0]=1;
+
+    printf("Minimum cost = %d", tsp(g,v,0,1,0));
+}
